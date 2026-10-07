@@ -499,7 +499,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
            className={`flex items-center justify-between w-full p-2 ${!isReadOnly ? 'hover:bg-zinc-800/80 cursor-pointer active:scale-[0.98]' : 'cursor-default'} rounded-xl transition-all`}
         >
           {/* Player 1 & 2 */}
-          <div className="flex-1 text-left leading-snug">
+          <div className="flex-1 min-w-0 text-left leading-snug">
             {match.serveFirst === 1 && (
                <div className="text-[10px] font-bold text-red-500 uppercase tracking-wider mb-0.5 whitespace-nowrap">
                  🎾 Saque
@@ -511,7 +511,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
                 setSelectedPlayerId(match.team1[0]);
                 setInitialProfileTab('tournament');
               }}
-              className="text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors inline-block"
+              className="text-[13px] sm:text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors truncate"
               title="Ver ficha e historial del jugador"
             >
               {getPlayerName(match.team1[0])}
@@ -522,7 +522,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
                 setSelectedPlayerId(match.team1[1]);
                 setInitialProfileTab('tournament');
               }}
-              className="text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors block"
+              className="text-[13px] sm:text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors truncate"
               title="Ver ficha e historial del jugador"
             >
               {getPlayerName(match.team1[1])}
@@ -541,17 +541,17 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
             className="flex items-center gap-3 px-2 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
             title={!isReadOnly ? "Editar marcador" : undefined}
           >
-            <div className={`w-[52px] h-[52px] rounded-2xl flex items-center justify-center text-2xl font-mono shadow-inner border border-zinc-800 font-bold ${match.score1 !== null && match.score1 > match.score2! ? 'bg-yellow-500 text-black border-none drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-black text-white'}`}>
+            <div className={`w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-mono shadow-inner border border-zinc-800 font-bold ${match.score1 !== null && match.score1 > match.score2! ? 'bg-yellow-500 text-black border-none drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-black text-white'}`}>
                {match.score1 !== null ? String(match.score1).padStart(2, '0') : '--'}
             </div>
             <span className="text-[11px] font-semibold text-zinc-600 uppercase">VS</span>
-            <div className={`w-[52px] h-[52px] rounded-2xl flex items-center justify-center text-2xl font-mono shadow-inner border border-zinc-800 font-bold ${match.score2 !== null && match.score2 > match.score1! ? 'bg-yellow-500 text-black border-none drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-black text-white'}`}>
+            <div className={`w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-mono shadow-inner border border-zinc-800 font-bold ${match.score2 !== null && match.score2 > match.score1! ? 'bg-yellow-500 text-black border-none drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-black text-white'}`}>
                {match.score2 !== null ? String(match.score2).padStart(2, '0') : '--'}
             </div>
           </div>
           
           {/* Player 3 & 4 */}
-          <div className="flex-1 text-right leading-snug">
+          <div className="flex-1 min-w-0 text-right leading-snug">
             {match.serveFirst === 2 && (
                <div className="text-[10px] font-bold text-red-500 uppercase tracking-wider mb-0.5 whitespace-nowrap">
                  Saque 🎾
@@ -563,7 +563,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
                 setSelectedPlayerId(match.team2[0]);
                 setInitialProfileTab('tournament');
               }}
-              className="text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors inline-block"
+              className="text-[13px] sm:text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors truncate"
               title="Ver ficha e historial del jugador"
             >
               {getPlayerName(match.team2[0])}
@@ -574,7 +574,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
                 setSelectedPlayerId(match.team2[1]);
                 setInitialProfileTab('tournament');
               }}
-              className="text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors block"
+              className="text-[13px] sm:text-[15px] font-medium text-white hover:text-yellow-400 hover:underline cursor-pointer transition-colors truncate"
               title="Ver ficha e historial del jugador"
             >
               {getPlayerName(match.team2[1])}
@@ -688,7 +688,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
           Modo Sin Conexión - Los cambios se guardan localmente y se sincronizarán al recuperar la red.
         </div>
       )}
-      <header className="px-6 pt-12 pb-4 backdrop-blur-2xl bg-zinc-950/80 sticky top-0 flex flex-col gap-5 text-white border-b border-zinc-900/50 z-30">
+      <header className="px-4 sm:px-6 pt-12 pb-4 backdrop-blur-2xl bg-zinc-950/80 sticky top-0 flex flex-col gap-5 text-white border-b border-zinc-900/50 z-30">
           <div className="flex items-center gap-3">
             {isPlayoffMode && (
               <div className="bg-yellow-500/10 border border-yellow-500/20 px-2 py-1 rounded-md mb-1 animate-pulse">
@@ -720,15 +720,15 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
               </h2>
             </div>
             
-            <div className="flex items-center gap-1.5 shrink-0 ml-auto pointer-events-auto">
-               <button onClick={() => setShowSplitBillModal(true)} className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Cuentas">
-                 <Receipt className="w-5 h-5" />
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 ml-auto pointer-events-auto">
+               <button onClick={() => setShowSplitBillModal(true)} className="p-1.5 sm:p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Cuentas">
+                 <Receipt className="w-4 h-4 sm:w-5 sm:h-5" />
                </button>
-               <button onClick={() => onNavigate('tv')} className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Modo TV">
-                 <Monitor className="w-5 h-5" />
+               <button onClick={() => onNavigate('tv')} className="p-1.5 sm:p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Modo TV">
+                 <Monitor className="w-4 h-4 sm:w-5 sm:h-5" />
                </button>
-               <button onClick={() => setShowQRModal(true)} className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Código QR">
-                  <QrCode className="w-5 h-5" />
+               <button onClick={() => setShowQRModal(true)} className="p-1.5 sm:p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white transition-colors" title="Código QR">
+                  <QrCode className="w-4 h-4 sm:w-5 sm:h-5" />
                </button>
             </div>
           </div>
@@ -758,7 +758,7 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
         )}
       </header>
 
-      <main className={`flex-1 overflow-y-auto no-scrollbar p-6 pb-32 bg-zinc-950 ${activeTab === 'matches' ? 'pt-10' : ''}`}>
+      <main className={`flex-1 overflow-y-auto no-scrollbar p-4 sm:p-6 pb-32 bg-zinc-950 ${activeTab === 'matches' ? 'pt-10' : ''}`}>
         {activeTab === 'matches' ? (
           <div className="space-y-4">
             {isPlayoffMode && (

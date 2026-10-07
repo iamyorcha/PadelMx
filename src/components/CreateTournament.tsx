@@ -187,13 +187,13 @@ export function CreateTournament({ onNavigate }: { onNavigate: (route: string) =
 
   return (
     <div className="flex flex-col h-full bg-zinc-950 text-white font-sans pb-24">
-      <header className="pt-12 pb-4 px-6 bg-zinc-950 flex items-center gap-4">
+      <header className="pt-12 pb-4 px-4 sm:px-6 bg-zinc-950 flex items-center gap-4">
         <button onClick={handleBack} className="p-2 -ml-2 text-yellow-500 hover:text-yellow-400 transition-colors">
           <ArrowLeft className="w-6 h-6 pointer-events-none" />
         </button>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-6 flex flex-col items-center">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col items-center">
         <div className="w-full max-w-xl space-y-12">
           {step === 1 ? (
             <section className="pt-4 animate-in fade-in slide-in-from-left-4 duration-300">
@@ -400,7 +400,7 @@ export function CreateTournament({ onNavigate }: { onNavigate: (route: string) =
         </div>
       </main>
 
-      <div className="p-6 bg-zinc-950/80 backdrop-blur-xl pt-4 border-t border-zinc-900 fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center">
+      <div className="p-4 sm:p-6 bg-zinc-950/80 backdrop-blur-xl pt-4 border-t border-zinc-900 fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center">
         <div className="w-full max-w-xl">
           {error && (
             <div className="bg-red-900/20 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl mb-4 text-sm font-semibold animate-in fade-in">
