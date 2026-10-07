@@ -71,7 +71,8 @@ function TournamentDashboardImpl({ tournament, onNavigate }: { tournament: Tourn
   const [isGeneratingRound, setIsGeneratingRound] = useState(false);
   const photoInputRef = useRef<HTMLInputElement>(null);
 
-  const isReadOnly = isViewer || !auth.currentUser || (Boolean(tournament.ownerId) && auth.currentUser.uid !== tournament.ownerId);
+  const isGuest = !auth.currentUser && localStorage.getItem('padel_guest_session') === 'true';
+  const isReadOnly = isViewer || (!auth.currentUser && !isGuest) || (auth.currentUser ? (Boolean(tournament.ownerId) && auth.currentUser.uid !== tournament.ownerId) : false);
 
   const handleSavePayments = (totalCost: number, payments: Record<string, boolean>, expenses: Expense[]) => {
     updateTournament({ id: tournament.id, totalCost, payments, expenses });
