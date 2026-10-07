@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "Tournament": {
+      "title": "Tournament",
+      "description": "A Padel tournament",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the user who owns this tournament"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "completed"]
+        },
+        "courts": {
+          "type": "integer"
+        },
+        "pointsPerMatch": {
+          "type": "integer"
+        },
+        "totalRounds": {
+          "type": "integer"
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          }
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+             "type": "object",
+             "properties": {
+                "id": { "type": "string" },
+                "round": { "type": "integer" },
+                "court": { "type": "integer" },
+                "team1": { "type": "array" },
+                "team2": { "type": "array" },
+                "score1": { "type": ["integer", "null"] },
+                "score2": { "type": ["integer", "null"] },
+                "serveFirst": { "type": ["integer", "null"] },
+                "playoffType": { "type": ["string", "null"] }
+             }
+          }
+        },
+        "createdAt": {
+           "type": "string",
+           "description": "Timestamp"
+        },
+        "updatedAt": {
+           "type": "string",
+           "description": "Timestamp"
+        }
+      },
+      "required": ["ownerId", "name", "status"]
+    },
+    "PlayerStat": {
+      "title": "PlayerStat",
+      "description": "Historical stats for a player tracked by an organizer",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the organizer"
+        },
+        "playerName": {
+          "type": "string",
+          "description": "Normalized name of the player"
+        },
+        "matchesPlayed": {
+          "type": "integer"
+        },
+        "wins": {
+          "type": "integer"
+        },
+        "pointsWon": {
+          "type": "integer"
+        },
+        "tournamentsWon": {
+          "type": "integer"
+        },
+        "currentWinStreak": {
+          "type": "integer"
+        },
+        "maxWinStreak": {
+          "type": "integer"
+        },
+        "createdAt": {
+           "type": "string"
+        },
+        "updatedAt": {
+           "type": "string"
+        }
+      },
+       "required": ["ownerId", "playerName"]
+    }
+  },
+  "firestore": {
+    "/tournaments/{tournamentId}": {
+      "schema": "Tournament",
+      "description": "Stores padel tournaments"
+    },
+    "/playerStats/{statId}": {
+      "schema": "PlayerStat",
+      "description": "Stores accumulated player stats under an organizer"
+    }
+  }
+}

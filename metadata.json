@@ -1,0 +1,10 @@
+{
+  "name": " Padel App",
+  "description": "App premium para organizar y gestionar torneos de pádel formato Americano. Creada por Yorch Polo",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
