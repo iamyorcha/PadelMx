@@ -65,7 +65,7 @@ async function startServer() {
         }
       }
       // All retries exhausted — return a graceful fallback instead of a hard 500
-      console.error("Gemini Error:", lastError);
+      console.warn(`Gemini summary unavailable after ${maxRetries} attempts (status ${lastError?.status ?? "unknown"}).`);
       res.json({ summary: "El resumen no está disponible en este momento debido a alta demanda del servicio. Intenta nuevamente en unos minutos." });
     } catch (error: any) {
       console.error("Server Error:", error);
