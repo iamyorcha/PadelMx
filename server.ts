@@ -46,15 +46,29 @@ async function startServer() {
         ${JSON.stringify(tournamentData, null, 2)}
       `;
 
-      const result = await ai.models.generateContent({
-        model: "gemini-3.8-flash",
-        contents: prompt
-      });
-      
-      const summary = result.text || "No se pudo generar el resumen en este momento.";
-      res.json({ summary });
+      const maxRetries = 3;
+      let lastError: any;
+      for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+          const result = await ai.models.generateContent({
+            model: "gemini-3.8-flash",
+            contents: prompt
+          });
+          const summary = result.text || "No se pudo generar el resumen en este momento.";
+          res.json({ summary });
+          return;
+        } catch (err: any) {
+          lastError = err;
+          const is503 = err.status === 503;
+          if (!is503 || attempt === maxRetries - 1) break;
+          await new Promise(r => setTimeout(r, 1000 * Math.pow(2, attempt)));
+        }
+      }
+      // All retries exhausted — return a graceful fallback instead of a hard 500
+      console.error("Gemini Error:", lastError);
+      res.json({ summary: "El resumen no está disponible en este momento debido a alta demanda del servicio. Intenta nuevamente en unos minutos." });
     } catch (error: any) {
-      console.error("Gemini Error:", error);
+      console.error("Server Error:", error);
       res.status(500).json({ error: error.message || "Failed to generate summary" });
     }
   });
