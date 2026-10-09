@@ -1,19 +1,15 @@
 import React, { useMemo, useState } from 'react';
-import { Plus, Trophy, ChevronRight, Calendar, Trash2, User as UserIcon, X, QrCode, Sun, Moon, Users, MessageSquare, ShieldCheck } from 'lucide-react';
+import { Plus, Trophy, ChevronRight, Calendar, Trash2, User as UserIcon, X, QrCode, Sun, Moon, Users } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useAppContext } from '../store';
 import { Logo } from './Logo';
 import { auth } from '../firebase';
 import { UserProfileModal } from './UserProfileModal';
-import { BetaFeedbackModal } from './BetaFeedbackModal';
-import { DiagnosticsModal } from './DiagnosticsModal';
 import { getFeatureFlag } from '../utils/featureFlags';
 
 export function Home({ onNavigate }: { onNavigate: (route: string) => void }) {
   const { tournaments, setActiveTournament, deleteTournament, theme, toggleTheme } = useAppContext();
   const [showProfile, setShowProfile] = useState(false);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [showDiagnostics, setShowDiagnostics] = useState(false);
   const currentUser = auth.currentUser || { uid: 'guest-user', displayName: 'Invitado Local', email: 'guest@padel.local', photoURL: null };
 
   const groupedTournaments = useMemo(() => {
@@ -60,22 +56,6 @@ export function Home({ onNavigate }: { onNavigate: (route: string) => void }) {
           <Logo />
         </div>
         <div className="flex items-center gap-2">
-          <button 
-            onClick={() => setShowFeedback(true)} 
-            className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
-            title="Feedback Beta"
-            id="beta-feedback-btn"
-          >
-             <MessageSquare className="w-5 h-5 text-amber-400/80" />
-          </button>
-          <button 
-            onClick={() => setShowDiagnostics(true)} 
-            className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
-            title="Diagnósticos de Producción"
-            id="diagnostics-btn"
-          >
-             <ShieldCheck className="w-5 h-5 text-blue-400/80" />
-          </button>
           <button onClick={toggleTheme} className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" title="Alternar Tema">
              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
@@ -170,16 +150,6 @@ export function Home({ onNavigate }: { onNavigate: (route: string) => void }) {
         <UserProfileModal user={currentUser} onClose={() => setShowProfile(false)} />
       )}
 
-      <BetaFeedbackModal
-        isOpen={showFeedback}
-        onClose={() => setShowFeedback(false)}
-        route="/"
-      />
-
-      <DiagnosticsModal
-        isOpen={showDiagnostics}
-        onClose={() => setShowDiagnostics(false)}
-      />
     </div>
   );
 }
