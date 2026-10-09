@@ -113,7 +113,7 @@ export function AuthWrapper({ children, onSharedView }: {
         <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-yellow-600/10 to-transparent pointer-events-none"></div>
         
         <div className="flex z-10 flex-col items-center justify-center w-full max-w-2xl px-6 py-12">
-            <img src="/logo.png" alt="Machos Padel" className="w-[320px] md:w-[400px] object-contain mb-8 drop-shadow-[0_0_30px_rgba(250,204,21,0.2)]" />
+            <img src="/logo.png" alt="Machos Padel" className="w-[260px] sm:w-[320px] md:w-[400px] max-w-full object-contain mb-8 drop-shadow-[0_0_30px_rgba(250,204,21,0.2)]" />
             
             <div className="text-center mb-16 px-4">
                 <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter leading-tight">

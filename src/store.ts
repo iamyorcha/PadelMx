@@ -218,7 +218,7 @@ export const useStore = (viewerId?: string | null): AppStore => {
       throw err;
     }
 
-    const ownerId = auth.currentUser?.uid || 'guest-local';
+    const ownerId = auth.currentUser?.uid || 'guest-local-user';
     const dataToSave: Tournament = {
       ...t,
       ownerId,

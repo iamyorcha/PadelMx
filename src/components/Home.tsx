@@ -55,42 +55,42 @@ export function Home({ onNavigate }: { onNavigate: (route: string) => void }) {
 
   return (
     <div className="flex flex-col h-full bg-zinc-950 text-white font-sans pb-24 relative">
-      <header className="px-6 pt-12 pb-4 bg-zinc-950 flex justify-between items-start">
-        <div>
+      <header className="px-4 sm:px-6 pt-12 pb-4 bg-zinc-950 flex justify-between items-start">
+        <div className="shrink-0">
           <Logo />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
           <button 
             onClick={() => setShowFeedback(true)} 
-            className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
+            className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-xl sm:rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
             title="Feedback Beta"
             id="beta-feedback-btn"
           >
-             <MessageSquare className="w-5 h-5 text-amber-400/80" />
+             <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400/80" />
           </button>
           <button 
             onClick={() => setShowDiagnostics(true)} 
-            className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
+            className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-xl sm:rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" 
             title="Diagnósticos de Producción"
             id="diagnostics-btn"
           >
-             <ShieldCheck className="w-5 h-5 text-blue-400/80" />
+             <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400/80" />
           </button>
-          <button onClick={toggleTheme} className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" title="Alternar Tema">
-             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          <button onClick={toggleTheme} className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-xl sm:rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" title="Alternar Tema">
+             {theme === 'dark' ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
           </button>
-          <button onClick={() => setShowProfile(true)} className="w-11 h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" title="Mi Perfil">
-             <UserIcon className="w-5 h-5" />
+          <button onClick={() => setShowProfile(true)} className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-zinc-400 bg-zinc-900 rounded-xl sm:rounded-2xl hover:bg-zinc-800 active:scale-95 transition-all border border-zinc-800/50 shadow-sm" title="Mi Perfil">
+             <UserIcon className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           {getFeatureFlag('globalRankings') && (
-            <button onClick={() => onNavigate('global-rankings')} className="w-11 h-11 flex items-center justify-center text-yellow-500 bg-yellow-500/10 rounded-2xl hover:bg-yellow-500/20 active:scale-95 transition-all shadow-sm" title="Ranking Global">
-               <Trophy className="w-5 h-5" />
+            <button onClick={() => onNavigate('global-rankings')} className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-yellow-500 bg-yellow-500/10 rounded-xl sm:rounded-2xl hover:bg-yellow-500/20 active:scale-95 transition-all shadow-sm" title="Ranking Global">
+               <Trophy className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-6 pt-6">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 pt-6">
         {tournaments.length === 0 ? (
           <div className="text-center py-16 px-6 bg-zinc-900 border border-zinc-800 rounded-3xl">
             <Trophy className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
@@ -115,7 +115,7 @@ export function Home({ onNavigate }: { onNavigate: (route: string) => void }) {
                         onNavigate('tournament');
                       }}
                     >
-                      <div className="flex-1 text-left p-6 relative">
+                      <div className="flex-1 text-left p-4 sm:p-6 relative">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-full blur-2xl -mr-16 -mt-16 transition-opacity opacity-0 group-hover:opacity-100"></div>
                         <div className="flex items-start justify-between mb-8 relative z-10">
                           <h3 className="font-black text-2xl text-white leading-tight tracking-tight">

@@ -1,0 +1,10 @@
+node_modules
+dist
+test-results
+e2e
+.git
+.gitignore
+*.md
+docker-compose*.yml
+.base44
+.env*
